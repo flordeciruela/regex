@@ -2,3 +2,7 @@
 label, textarea, input {
 	display: block;
 }
+
+span {
+	color: red;
+}
