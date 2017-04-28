@@ -3,6 +3,11 @@
 	padding: 0;
 }
 
+body {
+	margin-left: 45%;
+	margin-top: 30px;
+}
+
 label, textarea {
 	display: block;
 	margin: 5px 0;
@@ -10,7 +15,7 @@ label, textarea {
 
 span {
 	color: red;
-	margin: 3px 0;	
+	margin: 3px 0;
 }
 
 [for="check"] {

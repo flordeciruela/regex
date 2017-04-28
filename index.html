@@ -1,40 +1,36 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-	<meta charset="utf-8">
-	<title>Armando Regex</title>
-	<link rel="stylesheet" href="assets/css/main.css">
-</head>
-
-<body>
-	<h1>Formulario</h1>
-	<form id="formulario" action="index.html">
-		<label for="name">Nombre</label><input type="text" id="name">
-		<span></span>
-		<label for="apellido">Apellidos</label><input type="text" id="apellido">
-		<span></span>
-		<label for="dni">Dni</label><input type="text" id="dni">
-		<span></span>
-		<label for="fecha">Fecha de nacimiento</label><input type="date" id="fecha">
-		<span></span>
-		<label for="celular">Numero Celular</label><input type="tel" id="celular">
-		<span></span>
-		<label for="telefono">Teléfono fijo</label><input type="text" id="telefono">
-		<span></span>
-		<label for="pass">Contraseña</label><input type="password" id="pass">
-		<span></span>
-		<label for="confirm-pass">Confirmar contraseña</label><input type="password" id="confirm-pass">
-		<span></span>
-		<label for="comment">Comentarios</label>
-		<textarea name="name" rows="8" cols="80" id="comment"></textarea>
-		<span></span><br>
-		<label for="check">Acepto los <a href="#">Términos y condiciones </a></label><input type="checkbox" id="check">
-		<span></span>
-		<input type="submit" name="Enviar" value="Enviar" id="submit">
-		<span></span>
-	</form>
-	<script src="assets/js/app.js" charset="utf-8"></script>
-</body>
-
+	<head>
+		<meta charset="utf-8">
+		<title>Armando Regex</title>
+		<link rel="stylesheet" href="assets/css/main.css">
+	</head>
+	<body>
+		<h1>Formulario</h1>
+		<form id="formulario" action="index.html">
+			<label for="name">Nombre</label><input type="text" id="name" pattern="^([A-ZÁ-Ú]{1}[a-zá-úA-ZÁ-Ú]+[\s]*)+$" title="Primera letra debe ser mayúscula" required>
+			<span></span>
+			<label for="apellido">Apellidos</label><input type="text" id="apellido" pattern="^([A-ZÁ-Ú]{1}[a-zá-úA-ZÁ-Ú]+[\s]*)+$" title="Primera letra debe ser mayúscula" required>
+			<span></span>
+			<label for="dni">Dni</label><input type="text" id="dni" pattern="^([0-9]{8}$)" title="El DNI debe tener 8 digitos">
+			<span></span>
+			<label for="fecha">Fecha de nacimiento</label><input type="text" id="fecha" pattern="(\d{2})[-](\d{2})[-](\d{4})" title="Ingresar dd-mm-aaaa ,debes ser mayor de 18 años" required>
+			<span></span>
+			<label for="celular">Numero Celular</label><input type="tel" id="celular" pattern="^[9]{1}[\d]{8}$" title="Celular debe tener 9 al inicio y máximo 9 dígitos" required>
+			<span></span>
+			<label for="telefono">Teléfono fijo</label><input type="text" id="telefono" pattern="^[^9|0|1]{1}[\d]{6}$" title="El teléfono fijo debe tener 7 digitos y no puede empezar con 9, 0 o 1" required>
+			<span></span>
+			<label for="pass">Contraseña</label><input type="password" id="pass" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$" title="Ingresar entre 6 a 20 caracteres entre mayúsculas, minúsculas y numéros" required>
+			<span></span>
+			<label for="confirm-pass">Confirmar contraseña</label><input type="password" id="confirm-pass" required>
+			<span></span>
+			<label for="comment">Comentarios</label><input type="text" id="comment" title="El comentario no puede estar vacío" required>
+			<span></span><br>
+			<label for="check">Acepto los <a href="#">Términos y condiciones </a></label><input type="checkbox" id="check" required>
+			<span></span>
+			<input type="submit" name="Enviar" value="Enviar" id="submit">
+			<span></span>
+		</form>
+		<script src="assets/js/app.js" charset="utf-8"></script>
+	</body>
 </html>

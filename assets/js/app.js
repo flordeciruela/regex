@@ -11,6 +11,22 @@ var confirmPass = document.getElementById("confirm-pass");
 var comment = document.getElementById('comment');
 var check = document.getElementById('check');
 
+confirmPass.addEventListener('blur',function(event) {
+	if(confirmPass.value != pass.value) {
+    confirmPass.nextElementSibling.innerText= "La contraseña no coincide con la anterior, volver a confirmar contraseña.";
+	} else {
+    confirmPass.nextElementSibling.innerText= "";
+  }
+});
+
+check.addEventListener('blur',function(event) {
+	if(!check.checked) {
+		check.nextElementSibling.innerText= "Aceptar los términos y condiciones.";
+	} else {
+		check.nextElementSibling.innerText= "";
+	}
+});
+/*
 submit.addEventListener('click',function(event) {
   event.preventDefault();
 		if(nombre.value.length ==0 || apellido.length ==0 || dni.length ==0 || fecha.length ==0 ||
@@ -50,29 +66,18 @@ dni.addEventListener('blur',function(event) {
 		dni.nextElementSibling.innerText= "";
 	}
 });
-/*
-fecha.addEventListener('blur',function(event) {
-	//step="1" min="2013-01-01" max="2013-12-31" value="2013-01-01">
-  function validate_fecha(fecha){
-    var patron=new RegExp("^(19|20)+([0-9]{2})([-])([0-9]{1,2})([-])([0-9]{1,2})$");
 
-    if(fecha.search(patron)==0)
-    {
-        var values=fecha.split("-");
-        if(isValidDate(values[2],values[1],values[0]))
-        {
-            return true;
-        }
-    }
-    return false;
-}
-	if(!regexDni.test(fecha.value)) {
-		fecha.nextElementSibling.innerText= "Edad mínima es 18 años.";
+fecha.addEventListener('blur',function(event) {
+var reg = /^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1]{1})\1\d{4}$/;
+var reg = /(\d{3})[-.](\d{6})/;
+	if(!reg.test(fecha.value)){
+		fecha.nextElementSibling.innerText= "Fecha no es valida.";
 	} else {
 		fecha.nextElementSibling.innerText= "";
 	}
+
 });
-*/
+
 celular.addEventListener('blur',function(event) {
 	var regexCelular = /^[9]{1}[\d]{8}$/;
 	if(!regexCelular.test(celular.value)) {
@@ -99,17 +104,9 @@ pass.addEventListener('blur',function(event) {
 		pass.nextElementSibling.innerText= "";
 	}
 });
+*/
 
-confirmPass.addEventListener('blur',function(event) {
-	if(confirmPass.value != pass.value) {
-    confirmPass.nextElementSibling.innerText= "La contraseña no coincide con la anterior, volver a confirmar contraseña.";
-	} else if (confirmPass.value == pass.value && pass.nextElementSibling.innerText != ""){
-		confirmPass.nextElementSibling.innerText= "La contraseña debe tener entre 6 a 20 caracteres entre mayúsculas, minúsculas y numéricos, verifique campos de contraseña.";
-	} else {
-    confirmPass.nextElementSibling.innerText= "";
-  }
-});
-
+/*
 comment.addEventListener('blur',function(event) {
 	var regexComment = /^\s*$/;
 	if(regexComment.test(comment.value)) {
@@ -118,11 +115,4 @@ comment.addEventListener('blur',function(event) {
 		comment.nextElementSibling.innerText= "";
 	}
 });
-
-check.addEventListener('blur',function(event) {
-	if(!check.checked) {
-		check.nextElementSibling.innerText= "Aceptar los términos y condiciones.";
-	} else {
-		check.nextElementSibling.innerText= "";
-	}
-});
+*/
