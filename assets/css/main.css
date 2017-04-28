@@ -1,8 +1,22 @@
+* {
+	margin: 0;
+	padding: 0;
+}
 
-label, textarea, input {
+label, textarea {
 	display: block;
+	margin: 5px 0;
 }
 
 span {
 	color: red;
+	margin: 3px 0;
+}
+
+[for="check"] {
+	display: inline-block;
+}
+
+[type="submit"] {
+	display: block;
 }

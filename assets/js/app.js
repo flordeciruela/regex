@@ -1,6 +1,5 @@
 var submit = document.getElementById('submit');
 var formulario = document.getElementById('formulario');
-
 var nombre = document.getElementById('name');
 var apellido = document.getElementById('apellido');
 var dni = document.getElementById('dni');
@@ -13,22 +12,22 @@ var comment = document.getElementById('comment');
 var check = document.getElementById('check');
 
 submit.addEventListener('click',function(event) {
-    event.preventDefault();  // evita que se limpie automaticamente
-
-						if(nombre.value.length ==0 || apellido.length ==0 || dni.length ==0 || fecha.length ==0 ||
-							 celular.length ==0 || telefono.length==0 || pass.length==0 || confirmPass.length==0) {
-							alert("* Completa todos los campos.");
-						} else {
-							alert("OK");
-		          document.getElementById("formulario").reset();  // limpiar formulario
-						}
-
+  event.preventDefault();
+		if(nombre.value.length ==0 || apellido.length ==0 || dni.length ==0 || fecha.length ==0 ||
+			 celular.length ==0 || telefono.length==0 || pass.length==0 || confirmPass.length==0 ||
+       comment.value.length==0 || !check.checked) {
+			submit.nextElementSibling.innerText= "Completa todos los campos.";
+		} else {
+      submit.nextElementSibling.innerText= "";
+			alert("Los datos se enviaron con éxito!");
+      document.getElementById("formulario").reset();  // limpiar formulario
+		}
 });
 
 nombre.addEventListener('blur',function(event) {
 	var names = /^([A-ZÁ-Ú]{1}[a-zá-úA-ZÁ-Ú]+[\s]*)+$/g;
 	if(!names.test(nombre.value)) {
-		nombre.nextElementSibling.innerText= "El nombre debe tener la primera letra en mayúscula.";
+		nombre.nextElementSibling.innerText= "Nombres deben tener la primera letra en mayúscula.";
 	} else {
 		nombre.nextElementSibling.innerText= "";
 	}
@@ -37,7 +36,7 @@ nombre.addEventListener('blur',function(event) {
 apellido.addEventListener('blur',function(event) {
 	var names = /^([A-ZÁ-Ú]{1}[a-zá-úA-ZÁ-Ú]+[\s]*)+$/g;
 	if(!names.test(apellido.value)) {
-		apellido.nextElementSibling.innerText= "El apellido debe tener la primera letra en mayúscula.";
+		apellido.nextElementSibling.innerText= "Apellidos deben tener la primera letra en mayúscula.";
 	} else {
 		apellido.nextElementSibling.innerText= "";
 	}
@@ -46,16 +45,38 @@ apellido.addEventListener('blur',function(event) {
 dni.addEventListener('blur',function(event) {
 	var regexDni = /^([0-9]{8}$)/g;
 	if(!regexDni.test(dni.value)) {
-		dni.nextElementSibling.innerText= "El dni debe tener 8 digitos";
+		dni.nextElementSibling.innerText= "El dni debe tener 8 digitos.";
 	} else {
 		dni.nextElementSibling.innerText= "";
 	}
 });
+/*
+fecha.addEventListener('blur',function(event) {
+	//step="1" min="2013-01-01" max="2013-12-31" value="2013-01-01">
+  function validate_fecha(fecha){
+    var patron=new RegExp("^(19|20)+([0-9]{2})([-])([0-9]{1,2})([-])([0-9]{1,2})$");
 
+    if(fecha.search(patron)==0)
+    {
+        var values=fecha.split("-");
+        if(isValidDate(values[2],values[1],values[0]))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+	if(!regexDni.test(fecha.value)) {
+		fecha.nextElementSibling.innerText= "Edad mínima es 18 años.";
+	} else {
+		fecha.nextElementSibling.innerText= "";
+	}
+});
+*/
 celular.addEventListener('blur',function(event) {
 	var regexCelular = /^[9]{1}[\d]{8}$/;
 	if(!regexCelular.test(celular.value)) {
-		celular.nextElementSibling.innerText= "El celular debe tener 9 al inicio y max. 9 digitos";
+		celular.nextElementSibling.innerText= "El celular debe tener 9 al inicio y máximo 9 dígitos";
 	} else {
 		celular.nextElementSibling.innerText= "";
 	}
@@ -67,5 +88,41 @@ telefono.addEventListener('blur',function(event) {
 		telefono.nextElementSibling.innerText= "El teléfono fijo debe tener 7 digitos y no puede empezar con 9, 0 o 1.";
 	} else {
 		telefono.nextElementSibling.innerText= "";
+	}
+});
+
+pass.addEventListener('blur',function(event) {
+	var regexPass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
+	if(!regexPass.test(pass.value)) {
+		pass.nextElementSibling.innerText= "La contraseña debe tener entre 6 a 20 caracteres entre mayúsculas, minúsculas y numéros.";
+	} else {
+		pass.nextElementSibling.innerText= "";
+	}
+});
+
+confirmPass.addEventListener('blur',function(event) {
+	if(confirmPass.value != pass.value) {
+    confirmPass.nextElementSibling.innerText= "La contraseña no coincide con la anterior, volver a confirmar contraseña.";
+	} else if (confirmPass.value == pass.value && pass.nextElementSibling.innerText != ""){
+		confirmPass.nextElementSibling.innerText= "La contraseña debe tener entre 6 a 20 caracteres entre mayúsculas, minúsculas y numéricos, verifique campos de contraseña.";
+	} else {
+    confirmPass.nextElementSibling.innerText= "";
+  }
+});
+
+comment.addEventListener('blur',function(event) {
+	var regexComment = /^\s*$/;
+	if(regexComment.test(comment.value)) {
+		comment.nextElementSibling.innerText= "El comentario no puede estar vacío";
+	} else {
+		comment.nextElementSibling.innerText= "";
+	}
+});
+
+check.addEventListener('blur',function(event) {
+	if(!check.checked) {
+		check.nextElementSibling.innerText= "Aceptar los términos y condiciones.";
+	} else {
+		check.nextElementSibling.innerText= "";
 	}
 });
